@@ -25,9 +25,6 @@ const FavoriteTab: React.FC<Props> = () => {
   if (isLoading) {
     return <AudioListLoadingUI />;
   }
-  // if (!data) {
-  //   return <EmptyRecords title="There is no audio." />;
-  // }
   return (
     <ScrollView
       style={styles.container}

@@ -1,4 +1,4 @@
-package com.podifyplayer
+package com.podmaxapp.podmaxplayer
 
 import android.app.Application
 import com.facebook.react.PackageList

@@ -49,7 +49,9 @@ const UpdateAudio: React.FC<Props> = props => {
           setUploadProgress(Math.floor(uploaded));
         },
       });
-
+      dispatch(
+        updateNotification({message: 'Audio updated !', type: 'success'}),
+      );
       queryClient.invalidateQueries({queryKey: ['uploads-by-profile']});
       navigate('Profile');
     } catch (error) {

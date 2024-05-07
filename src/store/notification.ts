@@ -28,8 +28,8 @@ const slice = createSlice({
 });
 
 export const getNotificationState = createSelector(
-  (state: RootState) => state.notification,
-  notificationState => notificationState,
+  (state: RootState) => state,
+  state => state.notification,
 );
 
 export const {updateNotification} = slice.actions;

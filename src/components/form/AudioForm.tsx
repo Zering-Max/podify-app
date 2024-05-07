@@ -31,11 +31,12 @@ interface FormFields {
 
 const defaultForm: FormFields = {
   title: '',
-  category: '',
+  category: 'none',
   about: '',
   file: undefined,
   poster: undefined,
 };
+
 const commonSchema = {
   title: yup.string().trim().required('title is missing !'),
   category: yup.string().oneOf(categories, 'category is missing !'),
@@ -61,7 +62,6 @@ const newAudioSchema = yup.object().shape({
 const oldAudioSchema = yup.object().shape({
   ...commonSchema,
 });
-
 interface Props {
   initialValues?: {
     title: string;
@@ -113,6 +113,11 @@ const AudioForm: React.FC<Props> = ({
       }
 
       onSubmit(formData);
+      if (!isForUpdate) {
+        setAudioInfo({
+          ...defaultForm,
+        });
+      }
     } catch (error) {
       const errorMessage = catchAsyncError(error);
       dispatch(updateNotification({message: errorMessage, type: 'error'}));
@@ -124,8 +129,8 @@ const AudioForm: React.FC<Props> = ({
       setAudioInfo({
         ...initialValues,
       });
+      setIsForUpdate(true);
     }
-    setIsForUpdate(true);
   }, [initialValues]);
   return (
     <AppView>

@@ -7,11 +7,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React"
 
-@interface podifyPlayerTests : XCTestCase
+@interface PodmaxPlayerTests : XCTestCase
 
 @end
 
-@implementation podifyPlayerTests
+@implementation PodmaxPlayerTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL (^)(UIView *view))test
 {

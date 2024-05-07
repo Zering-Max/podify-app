@@ -1,6 +1,5 @@
-import colors from '@utils/colors';
 import React = require('react');
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 
 interface Props<T> {
   data: T[];

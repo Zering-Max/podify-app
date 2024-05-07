@@ -24,7 +24,6 @@ const ListItem: React.FC<ListItemProps> = ({title, icon, onPress}) => {
   return (
     <Pressable onPress={onPress} style={styles.listItemContainer}>
       {icon}
-
       <Text style={styles.listItemTitle}>{title}</Text>
     </Pressable>
   );

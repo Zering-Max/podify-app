@@ -40,27 +40,40 @@ const RecentlyPlayed: React.FC<Props> = () => {
       </PulseAnimationContainer>
     );
   }
-  if (!data.length) {
-    return null;
-  }
+  // if (!data.length) {
+  //   return null;
+  // }
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Recently Played</Text>
-      <GridView
-        data={data || []}
-        renderItem={item => {
-          return (
-            <View key={item.id} style={styles.listStyle}>
-              <RecentlyPlayedCard
-                title={item.title}
-                poster={item.poster}
-                onPress={() => onAudioPress(item, data)}
-                isPlaying={onGoingAudio?.id === item.id}
-              />
-            </View>
-          );
-        }}
-      />
+      {!data?.length ? (
+        <View>
+          <Text
+            style={{
+              fontSize: 16,
+              fontWeight: 'bold',
+              color: colors.INACTIVE_CONTRAST,
+            }}>
+            There is no audio recently played.
+          </Text>
+        </View>
+      ) : (
+        <GridView
+          data={data || []}
+          renderItem={item => {
+            return (
+              <View key={item.id} style={styles.listStyle}>
+                <RecentlyPlayedCard
+                  title={item.title}
+                  poster={item.poster}
+                  onPress={() => onAudioPress(item, data)}
+                  isPlaying={onGoingAudio?.id === item.id}
+                />
+              </View>
+            );
+          }}
+        />
+      )}
     </View>
   );
 };

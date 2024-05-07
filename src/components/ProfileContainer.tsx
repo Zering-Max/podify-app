@@ -77,6 +77,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 4,
     paddingVertical: 2,
     margin: 5,
+    borderRadius: 7,
   },
   settingsBtn: {
     width: 40,

@@ -8,12 +8,16 @@ import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 interface Props {
   playlist: Playlist;
   onPress?(): void;
+  onLongPress?(): void;
 }
 
-const PlaylistItem: React.FC<Props> = ({playlist, onPress}) => {
-  const {id, itemsCount, title, visibility} = playlist;
+const PlaylistItem: React.FC<Props> = ({playlist, onPress, onLongPress}) => {
+  const {itemsCount, title, visibility} = playlist;
   return (
-    <Pressable onPress={onPress} style={styles.container}>
+    <Pressable
+      onLongPress={onLongPress}
+      onPress={onPress}
+      style={styles.container}>
       <View style={styles.posterContainer}>
         <MaterialComIcon
           name="playlist-music"

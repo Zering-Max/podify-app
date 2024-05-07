@@ -17,7 +17,6 @@ const ProfileNavigator: React.FC<Props> = () => {
       <Stack.Screen name="ProfileSettings" component={ProfileSettings} />
       <Stack.Screen name="Verification" component={Verification} />
       <Stack.Screen name="UpdateAudio" component={UpdateAudio} />
-
     </Stack.Navigator>
   );
 };

@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   },
   tabBarLabelStyle: {
     color: colors.CONTRAST,
-    fontSize: 12,
+    fontSize: 11,
   },
 });
 

@@ -57,19 +57,23 @@ const Home: React.FC<Props> = () => {
     setShowPlaylistModal(true);
   };
   const handlePlaylistSubmit = async (value: PlaylistInfo) => {
-    if (!value.title.trim()) return;
+    if (!value.title.trim()) {
+      return;
+    }
 
     try {
       const client = await getClient();
-      const {data} = await client.post('/playlist/create', {
+      await client.post('/playlist/create', {
         audioId: selectedAudio?.id,
         title: value.title,
         visibility: value.private ? 'private' : 'public',
       });
-      console.log(data);
+      dispatch(
+        updateNotification({message: 'New playlist added !', type: 'success'}),
+      );
     } catch (error) {
       const errorMessage = catchAsyncError(error);
-      console.log(errorMessage);
+      dispatch(updateNotification({message: errorMessage, type: 'error'}));
     }
   };
   const updatePlaylist = async (item: Playlist) => {
@@ -88,7 +92,7 @@ const Home: React.FC<Props> = () => {
       );
     } catch (error) {
       const errorMessage = catchAsyncError(error);
-      console.log(errorMessage);
+      dispatch(updateNotification({message: errorMessage, type: 'error'}));
     }
   };
 

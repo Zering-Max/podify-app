@@ -57,18 +57,21 @@ const AppModal: React.FC<Props> = ({
 
   React.useEffect(() => {
     if (visible) {
-      translateY.value = withTiming(0, {duration: animation ? 200 : 0});
+      // translateY.value = withTiming(0, {duration: animation ? 200 : 0});
+      translateY.value = withTiming(0);
     }
   }, [translateY, visible, animation]);
   return (
     <Modal onRequestClose={handleClose} visible={visible} transparent>
       <GestureHandlerRootView style={{flex: 1}}>
         <Pressable onResponderEnd={handleClose} style={styles.backdrop} />
-        <GestureDetector gesture={gesture}>
-          <Animated.View style={[styles.modal, translateStyle]}>
-            {children}
-          </Animated.View>
-        </GestureDetector>
+        {/* pour résoudre le conflit entre FlatList (playlistAudioModal et AudioListModal) et l'animation gesture */}
+        <Animated.View style={[styles.modal, translateStyle]}>
+          <GestureDetector gesture={gesture}>
+            <Animated.View style={styles.handle}>{children}</Animated.View>
+          </GestureDetector>
+          {children}
+        </Animated.View>
       </GestureHandlerRootView>
     </Modal>
   );
@@ -89,6 +92,14 @@ const styles = StyleSheet.create({
     borderTopEndRadius: 10,
     borderTopStartRadius: 10,
     overflow: 'hidden',
+  },
+  handle: {
+    width: '100%',
+    height: 45,
+    backgroundColor: 'transparent',
+    position: 'absolute',
+    top: 0,
+    zIndex: 1,
   },
 });
 

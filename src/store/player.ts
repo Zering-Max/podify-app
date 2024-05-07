@@ -34,8 +34,8 @@ const slice = createSlice({
 });
 
 export const getPlayerState = createSelector(
-  (state: RootState) => state.player,
-  playerState => playerState,
+  (state: RootState) => state,
+  state => state.player,
 );
 
 export const {updateOnGoingAudio, updateOnGoingList, updatePlaybackRate} =

@@ -46,9 +46,11 @@ export const useFetchRecommendedAudios = () => {
   return query;
 };
 
-const fetchPlaylist = async (): Promise<Playlist[]> => {
+export const fetchPlaylist = async (pageNumber = 0): Promise<Playlist[]> => {
   const client = await getClient();
-  const {data} = await client('/playlist/by-profile');
+  const {data} = await client(
+    `/playlist/by-profile?limit=10&pageNumber=${pageNumber}`,
+  );
   return data.playlist;
 };
 
@@ -106,9 +108,9 @@ export const useFetchFavorites = () => {
   return query;
 };
 
-const fetchHistories = async (): Promise<History[]> => {
+export const fetchHistories = async (pageNumber = 0): Promise<History[]> => {
   const client = await getClient();
-  const {data} = await client('/history');
+  const {data} = await client(`/history?limit=15&pageNumber=${pageNumber}`);
   return data.histories;
 };
 

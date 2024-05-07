@@ -11,35 +11,46 @@ interface Props {
 const RecommendedPlaylist: React.FC<Props> = ({onListPress}) => {
   const {data} = useFetchRecommendedPlaylist();
 
-  if (!data?.length) {
-    return null;
-  }
+  // if (!data?.length) {
+  //   return null;
+  // }
 
   return (
     <View>
       <Text style={styles.header}>Playlist for you</Text>
-      <FlatList
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        data={data}
-        keyExtractor={item => item.id}
-        renderItem={({item}) => {
-          return (
-            <Pressable
-              onPress={() => onListPress(item)}
-              style={styles.container}>
-              <Image
-                source={require('../assets/music.png')}
-                style={styles.image}
-              />
-              <View style={styles.overlay}>
-                <Text style={styles.title}>{item.title}</Text>
-                <Text style={styles.title}>{item.itemsCount}</Text>
-              </View>
-            </Pressable>
-          );
-        }}
-      />
+      {!data?.length ? (
+        <Text
+          style={{
+            fontSize: 16,
+            fontWeight: 'bold',
+            color: colors.INACTIVE_CONTRAST,
+          }}>
+          There is no playlist.
+        </Text>
+      ) : (
+        <FlatList
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          data={data}
+          keyExtractor={item => item.id}
+          renderItem={({item}) => {
+            return (
+              <Pressable
+                onPress={() => onListPress(item)}
+                style={styles.container}>
+                <Image
+                  source={require('../assets/music.png')}
+                  style={styles.image}
+                />
+                <View style={styles.overlay}>
+                  <Text style={styles.title}>{item.title}</Text>
+                  <Text style={styles.title}>{item.itemsCount}</Text>
+                </View>
+              </Pressable>
+            );
+          }}
+        />
+      )}
     </View>
   );
 };

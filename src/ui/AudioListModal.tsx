@@ -35,6 +35,7 @@ const AudioListModal: React.FC<Props> = ({
           <>
             <Text style={styles.header}>{header}</Text>
             <FlatList
+              contentContainerStyle={styles.flatList}
               data={data}
               keyExtractor={item => item.id}
               renderItem={({item}) => {
@@ -63,6 +64,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: colors.CONTRAST,
     paddingVertical: 10,
+  },
+  flatList: {
+    paddingBottom: 50,
   },
 });
 

@@ -1,9 +1,9 @@
-const PRIMARY = '#443333';
-const SECONDARY = '#EEA849';
+const PRIMARY = '#0D043A';
+const SECONDARY = '#27BFF1';
 const CONTRAST = '#FFFFFF';
 const INACTIVE_CONTRAST = 'rgba(255, 255, 255, 0.5)';
-const ERROR = '#FF5B14';
-const SUCCESS = '#3BEF1E';
+const ERROR = '#d62828';
+const SUCCESS = '#2ec4b6';
 const OVERLAY = 'rgba(45, 35, 35, 0.5)';
 
 const colors = {

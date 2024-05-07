@@ -39,28 +39,39 @@ const RecommendedAudios: React.FC<Props> = ({
       </PulseAnimationContainer>
     );
   }
-  if (!data.length) {
-    return null;
-  }
+  // if (!data.length) {
+  //   return null;
+  // }
   return (
     <View>
       <Text style={styles.title}>You may like this</Text>
-      <GridView
-        col={3}
-        data={data || []}
-        renderItem={item => {
-          return (
-            <AudioCard
-              title={item.title}
-              poster={item.poster}
-              onPress={() => onAudioPress(item, data)}
-              onLongPress={() => onAudioLongPress(item, data)}
-              containerStyle={{width: '100%'}}
-              playing={onGoingAudio?.id === item.id}
-            />
-          );
-        }}
-      />
+      {!data?.length ? (
+        <Text
+          style={{
+            fontSize: 16,
+            fontWeight: 'bold',
+            color: colors.INACTIVE_CONTRAST,
+          }}>
+          There is no recommandations for you.
+        </Text>
+      ) : (
+        <GridView
+          col={3}
+          data={data || []}
+          renderItem={item => {
+            return (
+              <AudioCard
+                title={item.title}
+                poster={item.poster}
+                onPress={() => onAudioPress(item, data)}
+                onLongPress={() => onAudioLongPress(item, data)}
+                containerStyle={{width: '100%'}}
+                playing={onGoingAudio?.id === item.id}
+              />
+            );
+          }}
+        />
+      )}
     </View>
   );
 };

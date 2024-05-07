@@ -1,6 +1,5 @@
 import React = require('react');
-import {Keyboard, StyleSheet, TextInput, View, Text} from 'react-native';
-import AppLink from '@ui/AppLink';
+import {Keyboard, StyleSheet, TextInput, View} from 'react-native';
 import AuthFormContainer from '@components/AuthFormContainer';
 import OTPField from '@ui/OTPField';
 import AppButton from '@ui/AppButton';
@@ -113,7 +112,6 @@ const Verification: React.FC<Props> = props => {
               onChangeText={handlePaste}
               keyboardType="numeric"
               value={otp[index] || ''}
-              // autoComplete="one-time-code"
             />
           );
         })}

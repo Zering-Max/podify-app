@@ -14,7 +14,6 @@ import client from 'src/api/client';
 import {View, StyleSheet} from 'react-native';
 import Loader from '@ui/Loader';
 import colors from '@utils/colors';
-import RNBootSplash from 'react-native-bootsplash';
 
 interface Props {}
 
@@ -54,7 +53,7 @@ const AppNavigator: React.FC<Props> = () => {
     fetchAuthInfo();
   }, [dispatch]);
   return (
-    <NavigationContainer onReady={() => RNBootSplash.hide()} theme={AppTheme}>
+    <NavigationContainer theme={AppTheme}>
       {busy ? (
         <View style={styles.loader}>
           <Loader />

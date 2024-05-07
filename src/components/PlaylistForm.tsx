@@ -12,11 +12,18 @@ export interface PlaylistInfo {
 
 interface Props {
   visible: boolean;
+  initialValue?: PlaylistInfo;
   onRequestClose(): void;
   onSubmit(value: PlaylistInfo): void;
 }
 
-const PlaylistForm: React.FC<Props> = ({visible, onRequestClose, onSubmit}) => {
+const PlaylistForm: React.FC<Props> = ({
+  visible,
+  onRequestClose,
+  onSubmit,
+  initialValue,
+}) => {
+  const [isForUpdate, setIsForUpdate] = React.useState(false);
   const [playlistInfo, setPlaylistInfo] = React.useState({
     title: '',
     private: false,
@@ -32,6 +39,13 @@ const PlaylistForm: React.FC<Props> = ({visible, onRequestClose, onSubmit}) => {
     onSubmit(playlistInfo);
     handleClose();
   };
+
+  React.useEffect(() => {
+    if (initialValue) {
+      setPlaylistInfo({...initialValue});
+      setIsForUpdate(true);
+    }
+  }, [initialValue]);
   return (
     <BasicModalContainer visible={visible} onRequestClose={onRequestClose}>
       <View>
@@ -55,7 +69,9 @@ const PlaylistForm: React.FC<Props> = ({visible, onRequestClose, onSubmit}) => {
           <Text style={styles.privateLabel}>Private</Text>
         </Pressable>
         <Pressable onPress={handleSubmit} style={styles.submitButton}>
-          <Text>Create</Text>
+          <Text style={styles.submitBtnText}>
+            {isForUpdate ? 'Update' : 'Create'}
+          </Text>
         </Pressable>
       </View>
     </BasicModalContainer>
@@ -90,6 +106,9 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     borderColor: colors.PRIMARY,
     borderRadius: 7,
+  },
+  submitBtnText: {
+    color: colors.PRIMARY,
   },
 });
 

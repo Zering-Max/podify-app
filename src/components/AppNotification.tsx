@@ -11,7 +11,7 @@ import {getNotificationState, updateNotification} from 'src/store/notification';
 
 interface Props {}
 
-const AppNotification: React.FC<Props> = props => {
+const AppNotification: React.FC<Props> = () => {
   const {message, type} = useSelector(getNotificationState);
   const height = useSharedValue(0);
   const heightStyle = useAnimatedStyle(() => {
@@ -28,7 +28,6 @@ const AppNotification: React.FC<Props> = props => {
   switch (type) {
     case 'success':
       backgroundColor = colors.SUCCESS;
-      textColor = colors.PRIMARY;
       break;
   }
   React.useEffect(() => {

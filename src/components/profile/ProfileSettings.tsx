@@ -5,6 +5,7 @@ import React = require('react');
 import {
   Alert,
   Pressable,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -52,7 +53,7 @@ const ProfileSettings: React.FC<Props> = () => {
   const handleLogout = async (fromAll?: boolean) => {
     dispatch(updateBusyState(true));
     try {
-      const endpoint = '/auth/log-out?fromAll=' + fromAll ? 'yes' : '';
+      const endpoint = `/auth/log-out?fromAll=${fromAll ? 'yes' : ''}`;
       const client = await getClient();
 
       await client.post(endpoint);
@@ -164,7 +165,7 @@ const ProfileSettings: React.FC<Props> = () => {
     }
   }, [profile]);
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <AppHeader title="Settings" />
       <View style={styles.titleContainer}>
         <Text style={styles.title}>Profile Settings</Text>
@@ -228,7 +229,7 @@ const ProfileSettings: React.FC<Props> = () => {
           />
         </View>
       ) : null}
-    </View>
+    </ScrollView>
   );
 };
 
