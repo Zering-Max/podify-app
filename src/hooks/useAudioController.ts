@@ -71,7 +71,8 @@ const useAudioController = () => {
         // lecture audio d'une playlist différente
         await TrackPlayer.reset();
         await updateQueue(data);
-        return dispatch(updateOnGoingList(data));
+        dispatch(updateOnGoingList(data));
+        return;
       }
       await TrackPlayer.skip(index);
       await TrackPlayer.play();

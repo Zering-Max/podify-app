@@ -78,7 +78,7 @@ const AudioPlayer: React.FC<Props> = ({
   const handleOnPreviousPress = async () => {
     await onPreviousPress();
   };
-  console.log('rendrered audioplayer')
+  console.log('rendrered audioplayer');
   return (
     <AppModal animation visible={visible} onRequestClose={onRequestClose}>
       <View style={styles.container}>
