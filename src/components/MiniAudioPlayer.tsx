@@ -74,8 +74,6 @@ const MiniAudioPlayer: React.FC<Props> = () => {
       });
     }
   };
-  console.log('rendred mini audioplayer');
-  console.log(onGoingAudio);
   return (
     <>
       <View

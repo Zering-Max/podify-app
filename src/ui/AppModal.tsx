@@ -68,7 +68,7 @@ const AppModal: React.FC<Props> = ({
         {/* pour résoudre le conflit entre FlatList (playlistAudioModal et AudioListModal) et l'animation gesture */}
         <Animated.View style={[styles.modal, translateStyle]}>
           <GestureDetector gesture={gesture}>
-            <Animated.View style={styles.handle}>{children}</Animated.View>
+            <Animated.View style={styles.handle} />
           </GestureDetector>
           {children}
         </Animated.View>

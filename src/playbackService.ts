@@ -15,7 +15,7 @@ const debounce = (func: Function, delay: number) => {
 };
 
 interface StaleAudio {
-  audio: string;
+  audioId: string;
   progress: number;
   date: Date;
 }
@@ -47,7 +47,7 @@ const playbackService = async () => {
     const audio = lists[e.track];
 
     const staleAudio = {
-      audio: audio.id,
+      audioId: audio.id,
       progress: e.position,
       date: new Date(Date.now()),
     };

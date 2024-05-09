@@ -130,7 +130,7 @@ const PlaylistTab: React.FC<Props> = () => {
     return <AudioListLoadingUI />;
   }
 
-  console.log('DATA', data)
+  console.log('DATA', data);
 
   return (
     <>

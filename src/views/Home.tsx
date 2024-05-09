@@ -6,7 +6,7 @@ import PlaylistModal from '@components/PlaylistModal';
 import RecentlyPlayed from '@components/RecentlyPlayed';
 import RecommendedAudios from '@components/RecommendedAudios';
 import RecommendedPlaylist from '@components/RecommendedPlaylist';
-import { useQueryClient } from '@tanstack/react-query';
+import {useQueryClient} from '@tanstack/react-query';
 import colors from '@utils/colors';
 import React = require('react');
 import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
@@ -32,7 +32,7 @@ const Home: React.FC<Props> = () => {
   const [showPlaylistForm, setShowPlaylistForm] = React.useState(false);
   const dispatch = useDispatch();
   const {onAudioPress} = useAudioController();
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
 
   const {data} = useFetchPlaylist();
 

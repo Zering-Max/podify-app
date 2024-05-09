@@ -128,7 +128,7 @@ export const useFetchHistories = () => {
   return query;
 };
 
-const fetchRecentlyPlayed = async (): Promise<AudioData[]> => {
+export const fetchRecentlyPlayed = async (): Promise<AudioData[]> => {
   const client = await getClient();
   const {data} = await client('/history/recently-played');
   return data.audios;

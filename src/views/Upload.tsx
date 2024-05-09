@@ -19,7 +19,7 @@ const Upload: React.FC<Props> = () => {
     setBusy(true);
     try {
       const client = await getClient({'Content-Type': 'multipart/form-data;'});
-      const {data} = await client.post('/audio/create', formData, {
+      await client.post('/audio/create', formData, {
         onUploadProgress(progressEvent) {
           const uploaded = calculateUploadProgress({
             inputMin: 0,
@@ -34,7 +34,6 @@ const Upload: React.FC<Props> = () => {
           setUploadProgress(Math.floor(uploaded));
         },
       });
-      console.log(data);
       dispatch(
         updateNotification({message: 'Audio uploaded !', type: 'success'}),
       );

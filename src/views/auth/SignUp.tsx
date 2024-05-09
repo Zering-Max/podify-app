@@ -51,7 +51,7 @@ const initialValues = {
   password: '',
 };
 
-const SignUp: React.FC<Props> = props => {
+const SignUp: React.FC<Props> = () => {
   const [secureEntry, setSecureEntry] = React.useState(true);
   const navigation = useNavigation<NavigationProp<AuthStackParamList>>();
   const togglePasswordVisibility = () => {

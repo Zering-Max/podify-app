@@ -1,3 +1,4 @@
+import {useQueryClient} from '@tanstack/react-query';
 import GridView from '@ui/GridView';
 import PulseAnimationContainer from '@ui/PulseAnimationContainer';
 import RecentlyPlayedCard from '@ui/RecentlyPlayedCard';
@@ -14,9 +15,13 @@ interface Props {}
 const dummyData = new Array(4).fill('');
 
 const RecentlyPlayed: React.FC<Props> = () => {
+  const queryClient = useQueryClient();
   const {data, isLoading} = useFetchRecentlyPlayed();
   const {onAudioPress} = useAudioController();
   const {onGoingAudio} = useSelector(getPlayerState);
+  React.useEffect(() => {
+    queryClient.invalidateQueries({queryKey: ['recently-played']});
+  }, [data, queryClient]);
 
   if (isLoading) {
     return (
@@ -40,9 +45,6 @@ const RecentlyPlayed: React.FC<Props> = () => {
       </PulseAnimationContainer>
     );
   }
-  // if (!data.length) {
-  //   return null;
-  // }
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Recently Played</Text>
