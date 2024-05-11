@@ -6,9 +6,10 @@ import {PublicProfile} from 'src/@types/user';
 import {useFetchIsFollowing} from 'src/hooks/query';
 import {getClient} from 'src/api/client';
 import catchAsyncError from 'src/api/catchError';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {updateNotification} from 'src/store/notification';
 import {useMutation, useQueryClient} from '@tanstack/react-query';
+import {getAuthState, updateProfile} from 'src/store/auth';
 
 interface Props {
   profile?: PublicProfile;
@@ -18,6 +19,8 @@ const PublicProfileContainer: React.FC<Props> = ({profile}) => {
   const {data: isFollowing} = useFetchIsFollowing(profile?.id || '');
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
+  const myProfile = useSelector(getAuthState).profile;
+
   const toggleFollowing = async (id: string) => {
     try {
       if (!id) {
@@ -25,8 +28,14 @@ const PublicProfileContainer: React.FC<Props> = ({profile}) => {
       }
       const client = await getClient();
       await client.post(`/profile/update-follower/${id}`);
-      //relance une query pour update le nb de followers/followings
+      //relance une query pour update le nb de followers/followings du user private
       queryClient.invalidateQueries({queryKey: ['profile', id]});
+      if (myProfile) {
+        const {data} = await client.get('/profile/followings');
+        dispatch(
+          updateProfile({...myProfile, followings: data.followings.length}),
+        );
+      }
     } catch (error) {
       const errorMessage = catchAsyncError(error);
       dispatch(updateNotification({message: errorMessage, type: 'error'}));
@@ -90,6 +99,7 @@ const styles = StyleSheet.create({
   },
   profileActionLink: {
     backgroundColor: colors.SECONDARY,
+    borderRadius: 7,
     color: colors.PRIMARY,
     paddingHorizontal: 4,
     paddingVertical: 2,

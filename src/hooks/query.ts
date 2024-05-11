@@ -198,7 +198,6 @@ const fetchPublicProfile = async (id: string): Promise<PublicProfile> => {
 
 export const useFetchPublicProfile = (id: string) => {
   const dispatch = useDispatch();
-
   const query = useQuery({
     queryKey: ['profile', id],
     queryFn: () => fetchPublicProfile(id),
