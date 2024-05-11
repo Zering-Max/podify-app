@@ -78,14 +78,13 @@ const AudioPlayer: React.FC<Props> = ({
   const handleOnPreviousPress = async () => {
     await onPreviousPress();
   };
+
+  const handleOnAudioInfo = () => {
+    setShowAudioInfo(true);
+  };
   return (
     <AppModal animation visible={visible} onRequestClose={onRequestClose}>
       <View style={styles.container}>
-        <Pressable
-          onPress={() => setShowAudioInfo(true)}
-          style={styles.infoBtn}>
-          <AntDesign name="infocirlceo" color={colors.CONTRAST} size={24} />
-        </Pressable>
         <AudioInfoContainer
           visible={showAudioInfo}
           closeHandler={setShowAudioInfo}
@@ -93,6 +92,9 @@ const AudioPlayer: React.FC<Props> = ({
         <Image source={source} style={styles.poster} />
         <View style={styles.contentContainer}>
           <Text style={styles.title}>{onGoingAudio?.title}</Text>
+          <Pressable onPress={handleOnAudioInfo} style={styles.infoBtn}>
+            <AntDesign name="infocirlceo" color={colors.CONTRAST} size={24} />
+          </Pressable>
           <AppLink
             onPress={onProfileLinkPress}
             title={onGoingAudio?.owner.name || ''}

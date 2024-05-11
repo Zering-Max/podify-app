@@ -22,7 +22,7 @@ interface Props {
 
 const {height} = Dimensions.get('window');
 
-const modalHeight = height;
+const modalHeight = height - 75;
 
 const AppModal: React.FC<Props> = ({
   children,
